@@ -1,0 +1,156 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  text-align: center;
+  padding: 20px;
+}
+
+h1 {
+  color: #e91e63;
+}
+
+button {
+  background-color: #e91e63;
+  color: white;
+  padding: 15px;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+  border-radius: 5px;
+  margin: 10px;
+}
+
+button:hover {
+  background-color: #d81b60;
+}
+
+.hidden {
+  display: none;
+}
+
+.game-container {
+  max-width: 500px;
+  margin: auto;
+}
+
+#minigameArea {
+  margin-top: 20px;
+}
+
+#wordList {
+  margin-top: 20px;
+  text-align: left;
+  font-size: 1.2em;
+}
+
+#words li {
+  color: #e91e63;
+}
+
+/* Jogo da Memória */
+.memory-card {
+  width: 80px;
+  height: 80px;
+  margin: 10px;
+  display: inline-block;
+  background-image: url('carta.jpg'); /* Imagem de carta virada */
+  background-size: cover;
+  border: 2px solid #e91e63;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.5s;
+  position: relative;
+}
+
+.memory-card.flip {
+  transform: rotateY(180deg);
+}
+
+.memory-card.matched {
+  background-color: #81c784;
+}
+
+.memory-card .emoji {
+  font-size: 2em;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* Pescaria */
+#fishArea {
+  margin-top: 20px;
+  position: relative;
+  height: 300px;
+  width: 100%;
+}
+
+.fish {
+  position: absolute;
+  font-size: 2em;
+  background-color: #4caf50;
+  border-radius: 50%;
+  width: 50px;
+  height: 50px;
+  margin: 10px;
+  cursor: pointer;
+}
+
+.fish.hidden {
+  display: none;
+}
+
+/* Associação */
+.word-box {
+  font-size: 1.5em;
+  margin: 20px;
+  cursor: pointer;
+}
+
+.drop-area {
+  width: 200px;
+  height: 150px;
+  border: 2px dashed #e91e63;
+  margin: 10px auto;
+  text-align: center;
+  padding-top: 60px;
+  font-size: 1.2em;
+}
+.memory-card {
+  position: relative;
+  width: 80px;
+  height: 120px;
+  background-color: #f2f2f2;
+  border-radius: 8px;
+  margin: 5px;
+  cursor: pointer;
+  transform: rotateY(0deg);
+  transition: transform 0.3s;
+  display: inline-block;
+  perspective: 1000px;
+}
+
+.memory-card.flip {
+  transform: rotateY(180deg);
+}
+
+.memory-card .emoji {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 32px;
+  visibility: hidden;  /* Inicialmente escondido */
+}
+
+.memory-card.flip .emoji {
+  visibility: visible;  /* Só visível quando a carta for virada */
+}
+
