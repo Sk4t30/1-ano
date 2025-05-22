@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jogo do Aniversário</title>
     <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
 </head>
 <body>
     <div class="game-container">
@@ -19,6 +21,16 @@
             </div>
         </div>
     </div>
+
+    <audio id="bgMusic" loop>
+  <source src="audio/negrajaque-maria-madalena-cb89ec55.mp3" type="audio/mp3">
+</audio>
+
+<div class="audio-controls">
+  <label for="volumeRange">Volume 💗</label>
+  <input type="range" id="volumeRange" min="0" max="1" step="0.01" value="0.5">
+</div>
+
     <script src="script.js"></script>
 </body>
 </html>

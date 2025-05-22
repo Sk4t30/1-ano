@@ -1,5 +1,5 @@
 let currentLevel = 0;
-const totalLevels = 9;
+const totalLevels = 11;
 const words = [];
 const startButton = document.getElementById('startButton');
 const gameArea = document.getElementById('gameArea');
@@ -28,11 +28,11 @@ function nextLevel() {
 
     switch (currentLevel) {
         case 0:
-            labirintoGame(); break;
+            fishingGame(); break;
         case 1:
             memoryGame(); break;
         case 2:
-            fishingGame(); break;
+            labirintoGame(); break;
         case 3:
             associationGame(); break;
         case 4:
@@ -53,8 +53,8 @@ function nextLevel() {
             minigameArea.innerHTML = '<p>Minigame não implementado!</p>';
             nextLevelButton.classList.remove('hidden');
     }
-
     currentLevel++;
+
 }
 
 function updateWordList() {
@@ -70,7 +70,7 @@ function updateWordList() {
 
 function quizGame() {
     minigameArea.innerHTML = `
-        <h2>Quiz: Qual dessas opções representa melhor o amor verdadeiro?</h2>
+        <h2>Quiz: Quando foi o dia que eu te pedi em namoro</h2>
         <button class="quiz-option">Poder</button>
         <button class="quiz-option">Respeito</button>
         <button class="quiz-option">Dinheiro</button>
@@ -92,7 +92,7 @@ function quizGame() {
 // jogo da memoria 
 
 function memoryGame() {
-    const emojis = ['💖', '🌹', '💖', '🌹'];
+    const emojis = ['💖', '🌹', '💖', '🌹','🌸' ,'💘' ,'💏' ,'💞','💍','🌸' ,'💘' ,'💏' ,'💞','💍','😍','🇬🇬','😍','🇬🇬'];
     const shuffled = emojis.sort(() => 0.5 - Math.random());
 
     const cards = shuffled.map((emoji, index) => `
@@ -169,7 +169,7 @@ function fishingGame() {
                 document.querySelectorAll('.fish').forEach(f => {
                     if (f !== fish) f.classList.add('hidden');
                 });
-                minigameArea.innerHTML += `<p>Você pescou o peixe certo! 💖</p>`;
+                minigameArea.innerHTML += `<p>Parabens, você pescou o peixe certo! 💖</p>`;
                 words.push('Pescaria');
                 updateWordList();
                 nextLevelButton.classList.remove('hidden');
@@ -223,14 +223,19 @@ function associationGame() {
         <div class="association-container">
             <div class="draggables">
                 <!-- Emojis arrastáveis -->
-                <div class="emoji" draggable="true" data-match="por-do-sol">🌞</div>
-                <div class="emoji" draggable="true" data-match="noite">🌙</div>
+                <div class="emoji" draggable="true" data-match="vc flechou meu coraçao">💘</div>
+                <div class="emoji" draggable="true" data-match="nosso futuro">👨‍👩‍👧‍👦</div>
+                <div class="emoji" draggable="true" data-match="coelho">🐇</div>
+                <div class="emoji" draggable="true" data-match="apaixonada">😍</div>
+                <div class="emoji" draggable="true" data-match="burro">🐴</div>
             </div>
-
             <div class="dropzones">
                 <!-- Áreas de destino -->
-                <div class="drop-area" data-name="por-do-sol">Pôr do Sol</div>
-                <div class="drop-area" data-name="noite">Noite</div>
+                <div class="drop-area" data-name="vc flechou meu coraçao">Vc flechou meu coraçao</div>
+                <div class="drop-area" data-name="nosso futuro">Nosso futuro</div>
+                <div class="drop-area" data-name="coelho">A começo do seu primeiro apelido</div>
+                <div class="drop-area" data-name="apaixonada">Eu quando te vi pela primeira vez</div>
+                <div class="drop-area" data-name="burro">Segunda parte do seu primeiro apelido</div>
             </div>
         </div>
     `;
@@ -280,16 +285,16 @@ function associationGame() {
 // caça palavra
 
 function wordSearchGame() {
-    const targetWords = ['AMOR', 'LUZ'];
+    const targetWords = ['AMOR', 'ZUL','1ANO'];
     let foundWords = [];
 
     const grid = [
-        ['A', 'M', 'O', 'R', 'X', 'Y'],
-        ['L', 'U', 'Z', 'K', 'Q', 'P'],
-        ['B', 'C', 'D', 'E', 'F', 'G'],
-        ['H', 'I', 'J', 'K', 'L', 'M'],
+        ['A', 'U', 'P', 'D', 'X', 'Y'],
+        ['H', 'I', 'A', 'K', 'Q', 'P'],
+        ['B', 'A', 'M', 'O', 'R', 'G'],
+        ['Z', 'U', 'L', 'K', 'L', 'M'],
         ['N', 'O', 'P', 'Q', 'R', 'S'],
-        ['T', 'U', 'V', 'W', 'X', 'Y'],
+        ['T', 'U', '1', 'A', 'N', 'O'],
     ];
 
     minigameArea.innerHTML = `
@@ -372,7 +377,7 @@ function wordSearchGame() {
 // forca
 
 function hangmanGame() {
-    const palavras = ['AMOR', 'LUZ', 'CARINHO', 'BEIJO', 'ABRAÇO'];
+    const palavras = ['AMOR', 'EU TE AMO', 'CARINHO', 'RESPEITO', 'UM ANO'];
     const palavra = palavras[Math.floor(Math.random() * palavras.length)];
     let erros = 0;
     let maxErros = 10;
@@ -469,7 +474,7 @@ function hangmanGame() {
 
 function puzzleGame() {
     const size = 3; // 3x3
-    const imageURL = 'quebra.jpg.jfif';
+    const imageURL = 'eu e a gio.jpg';
 
     minigameArea.innerHTML = `
         <h2>Monte o Quebra-Cabeça do Amor 💖</h2>
@@ -662,19 +667,19 @@ function sequenceGame() {
 function fillInTheBlankGame() {
   const frases = [
     {
-      texto: "Você é o(a) ____ da minha vida.",
-      opcoes: ["tempestade", "luz", "dívida"],
-      correta: "luz"
+      texto: "Você é o ____ da minha vida.",
+      opcoes: ["tempestade", "amor", "dívida"],
+      correta: "amor"
     },
     {
-      texto: "Eu te ____ com todo o meu coração.",
-      opcoes: ["ignoro", "amo", "suporto"],
-      correta: "amo"
+      texto: "seu peido parece ______",
+      opcoes: ["o cheiro de flores e rosas", "hitoshima e nagasaki", "uma bomba nuclear"],
+      correta: "hitoshia e nagasaki"
     },
     {
       texto: "Nosso amor é mais forte que ____.",
-      opcoes: ["o wi-fi", "o tempo", "a pizza"],
-      correta: "o tempo"
+      opcoes: ["o saitama", "cbum", "goku"],
+      correta: "cbum"
     }
   ];
 
@@ -726,7 +731,7 @@ function fillInTheBlankGame() {
 }
 
 function termoGame() {
-  const palavraSecreta = "AMORO"; // deve ter 5 letras
+  const palavraSecreta = "adoro"; // deve ter 5 letras
   const maxTentativas = 6;
   let tentativas = [];
 
@@ -922,6 +927,21 @@ function labirintoGame() {
   render();
 }
 
+// fim do labirinto 
+
+const bgMusic = document.getElementById('bgMusic');
+const volumeControl = document.getElementById('volumeRange');
+
+bgMusic.volume = 0.5;
+
+volumeControl.addEventListener('input', () => {
+  bgMusic.volume = volumeControl.value;
+});
+
+// Inicia a música quando clicar em "Começar"
+startButton.addEventListener('click', () => {
+  bgMusic.play();
+});
 
 
 
