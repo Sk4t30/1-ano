@@ -79,7 +79,7 @@ function quizGame() {
     document.querySelectorAll('.quiz-option').forEach(button => {
         button.addEventListener('click', () => {
             if (button.textContent === 'Respeito') {
-                words.push('Quiz');
+                words.push('Z');
                 updateWordList();
                 nextLevelButton.classList.remove('hidden');
             } else {
@@ -122,7 +122,7 @@ function memoryGame() {
                         const allMatched = [...document.querySelectorAll('.memory-card')]
                             .every(card => card.classList.contains('matched'));
                         if (allMatched) {
-                            words.push('Memória');
+                            words.push('E');
                             updateWordList();
                             nextLevelButton.classList.remove('hidden');
                         }
@@ -170,7 +170,7 @@ function fishingGame() {
                     if (f !== fish) f.classList.add('hidden');
                 });
                 minigameArea.innerHTML += `<p>Parabens, você pescou o peixe certo! 💖</p>`;
-                words.push('Pescaria');
+                words.push('F');
                 updateWordList();
                 nextLevelButton.classList.remove('hidden');
             } else {
@@ -271,7 +271,7 @@ function associationGame() {
 
                 // Quando todos estiverem corretos
                 if (correctMatches === draggables.length) {
-                    words.push('Associação');
+                    words.push('I');
                     updateWordList();
                     nextLevelButton.classList.remove('hidden');
                 }
@@ -348,7 +348,7 @@ function wordSearchGame() {
                     foundWords.push(currentSelection);
 
                     if (foundWords.length === targetWords.length) {
-                        words.push('Caça-Palavras');
+                        words.push('1');
                         updateWordList();
                         nextLevelButton.classList.remove('hidden');
                     }
@@ -433,7 +433,7 @@ function hangmanGame() {
             const venceu = palavra.split('').every(l => letrasCertas.includes(l));
             if (venceu) {
                 palavraOculta.textContent = palavra;
-                words.push('Forca');
+                words.push('A');
                 updateWordList();
                 nextLevelButton.classList.remove('hidden');
             }
@@ -535,7 +535,7 @@ function puzzleGame() {
         const won = pieces.every((val, i) => val === i);
         if (won) {
             minigameArea.innerHTML += `<p>✨ Quebra-cabeça completo! ✨</p>`;
-            words.push('Quebra-cabeça');
+            words.push('N');
             updateWordList();
             nextLevelButton.classList.remove('hidden');
         }
@@ -618,7 +618,7 @@ function sequenceGame() {
     playerSequence = [];
     level++;
     if (level > maxLevel) {
-      words.push('Sequência');
+      words.push('O');
       updateWordList();
       nextLevelButton.classList.remove('hidden');
       message.textContent = `Parabéns! Você completou todos os níveis! Clique em Próxima Fase.`;
@@ -673,8 +673,8 @@ function fillInTheBlankGame() {
     },
     {
       texto: "seu peido parece ______",
-      opcoes: ["o cheiro de flores e rosas", "hitoshima e nagasaki", "uma bomba nuclear"],
-      correta: "hitoshia e nagasaki"
+      opcoes: ["o cheiro de flores e rosas", "hiroshima e nagasaki", "uma bomba nuclear"],
+      correta: "hiroshima e nagasaki"
     },
     {
       texto: "Nosso amor é mais forte que ____.",
@@ -714,7 +714,7 @@ function fillInTheBlankGame() {
       atual++;
       if (atual >= frases.length) {
         mensagem.textContent = "✅ Muito bem! Você completou todas as frases!";
-        words.push("Frase");
+        words.push("!");
         updateWordList();
         nextLevelButton.classList.remove("hidden");
         minigameArea.innerHTML += `<p style="margin-top:20px; font-weight:bold;">Palavra liberada: Frase ✨</p>`;
@@ -764,7 +764,7 @@ function termoGame() {
 
     if (palavra === palavraSecreta) {
       mensagem.innerHTML = "✨ Você acertou! A palavra era <strong>" + palavraSecreta + "</strong>";
-      words.push("Palpite");
+      words.push("!");
       updateWordList();
       nextLevelButton.classList.remove("hidden");
       btn.disabled = true;
@@ -862,6 +862,7 @@ function labirintoGame() {
   const labMsg = document.getElementById("labMsg");
 
   function render() {
+    window.mover = mover;
     labEl.innerHTML = "";
     for (let l = 0; l < mapa.length; l++) {
       for (let c = 0; c < mapa[l].length; c++) {
@@ -905,7 +906,7 @@ function labirintoGame() {
 
     if (destino === '💌') {
       ganhou = true;
-      words.push("Labirinto");
+      words.push("L");
       updateWordList();
       nextLevelButton.classList.remove("hidden");
       labMsg.innerHTML = "✨ Você encontrou a carta do amor! 💌";
