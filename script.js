@@ -215,7 +215,7 @@ function animateFish(fish) {
 // caça palavra
 
 function wordSearchGame() {
-    const targetWords = ['AMOR', 'ZUL','1ANO'];
+    const targetWords = ['AMOR', 'ZUL', '1ANO'];
     let foundWords = [];
 
     const grid = [
@@ -234,11 +234,48 @@ function wordSearchGame() {
 
     const gridContainer = document.getElementById('wordSearchGrid');
 
-    let isMouseDown = false;
+    let isSelecting = false;
     let currentSelection = '';
     let selectedCells = [];
 
-    // Cria a grade
+    function startSelection(cell) {
+        if (cell.classList.contains('found')) return;
+        isSelecting = true;
+        currentSelection = cell.textContent;
+        selectedCells = [cell];
+        cell.classList.add('selected');
+    }
+
+    function continueSelection(cell) {
+        if (isSelecting && !selectedCells.includes(cell) && !cell.classList.contains('found')) {
+            currentSelection += cell.textContent;
+            selectedCells.push(cell);
+            cell.classList.add('selected');
+        }
+    }
+
+    function endSelection() {
+        if (targetWords.includes(currentSelection)) {
+            selectedCells.forEach(c => {
+                c.classList.remove('selected');
+                c.classList.add('found');
+            });
+            foundWords.push(currentSelection);
+
+            if (foundWords.length === targetWords.length) {
+                words.push('1');
+                updateWordList();
+                nextLevelButton.classList.remove('hidden');
+            }
+        } else {
+            selectedCells.forEach(c => c.classList.remove('selected'));
+        }
+
+        isSelecting = false;
+        currentSelection = '';
+        selectedCells = [];
+    }
+
     grid.forEach((row, rowIndex) => {
         row.forEach((letter, colIndex) => {
             const cell = document.createElement('div');
@@ -247,60 +284,46 @@ function wordSearchGame() {
             cell.dataset.row = rowIndex;
             cell.dataset.col = colIndex;
 
-            // Início do arrasto
-            cell.addEventListener('mousedown', () => {
-                if (cell.classList.contains('found')) return;
-                isMouseDown = true;
-                currentSelection = letter;
-                selectedCells = [cell];
-                cell.classList.add('selected');
-            });
+            // Mouse
+            cell.addEventListener('mousedown', () => startSelection(cell));
+            cell.addEventListener('mouseenter', () => continueSelection(cell));
 
-            // Enquanto arrasta
-            cell.addEventListener('mouseenter', () => {
-                if (isMouseDown && !selectedCells.includes(cell) && !cell.classList.contains('found')) {
-                    currentSelection += letter;
-                    selectedCells.push(cell);
-                    cell.classList.add('selected');
+            // Touch
+            cell.addEventListener('touchstart', (e) => {
+                e.preventDefault();
+                const touch = e.touches[0];
+                const target = document.elementFromPoint(touch.clientX, touch.clientY);
+                if (target && target.classList.contains('grid-cell')) {
+                    startSelection(target);
                 }
             });
 
-            // Final do arrasto
-            cell.addEventListener('mouseup', () => {
-                isMouseDown = false;
-
-                // Verifica se é uma palavra válida
-                if (targetWords.includes(currentSelection)) {
-                    selectedCells.forEach(c => {
-                        c.classList.remove('selected');
-                        c.classList.add('found');
-                    });
-                    foundWords.push(currentSelection);
-
-                    if (foundWords.length === targetWords.length) {
-                        words.push('1');
-                        updateWordList();
-                        nextLevelButton.classList.remove('hidden');
-                    }
-                } else {
-                    // Resetar se estiver errado
-                    selectedCells.forEach(c => c.classList.remove('selected'));
+            cell.addEventListener('touchmove', (e) => {
+                const touch = e.touches[0];
+                const target = document.elementFromPoint(touch.clientX, touch.clientY);
+                if (target && target.classList.contains('grid-cell')) {
+                    continueSelection(target);
                 }
-
-                currentSelection = '';
-                selectedCells = [];
             });
+
+            cell.addEventListener('touchend', (e) => {
+                endSelection();
+            });
+
+            cell.addEventListener('mouseup', () => endSelection());
 
             gridContainer.appendChild(cell);
         });
     });
 
-    // Se o usuário soltar fora de uma célula
+    // Se o mouse soltar fora do grid
     document.addEventListener('mouseup', () => {
-        isMouseDown = false;
-        selectedCells.forEach(c => c.classList.remove('selected'));
-        currentSelection = '';
-        selectedCells = [];
+        if (isSelecting) endSelection();
+    });
+
+    // Se o dedo soltar fora no touch
+    document.addEventListener('touchend', () => {
+        if (isSelecting) endSelection();
     });
 }
 
@@ -694,7 +717,7 @@ function termoGame() {
 
     if (palavra === palavraSecreta) {
       mensagem.innerHTML = "✨ Você acertou! A palavra era <strong>" + palavraSecreta + "</strong>";
-      words.push("i");
+      words.push("I");
       updateWordList();
       nextLevelButton.classList.remove("hidden");
       btn.disabled = true;
