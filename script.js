@@ -1,5 +1,5 @@
 let currentLevel = 0;
-const totalLevels = 11;
+const totalLevels = 10;
 const words = [];
 const startButton = document.getElementById('startButton');
 const gameArea = document.getElementById('gameArea');
@@ -34,7 +34,7 @@ function nextLevel() {
         case 2:
             labirintoGame(); break;
         case 3:
-            associationGame(); break;
+            termoGame(); break;
         case 4:
             quizGame(); break;
         case 5:
@@ -47,8 +47,6 @@ function nextLevel() {
             sequenceGame(); break;
         case 9:
             fillInTheBlankGame(); break;
-        case 10:
-            termoGame(); break;
         default:
             minigameArea.innerHTML = '<p>Minigame não implementado!</p>';
             nextLevelButton.classList.remove('hidden');
@@ -212,74 +210,6 @@ function animateFish(fish) {
     }
 
     move();
-}
-
-// jogo de associaçao 
-
-function associationGame() {
-    // Limpa a área de minigame
-    minigameArea.innerHTML = `
-        <h2>Associe corretamente os símbolos aos seus significados</h2>
-        <div class="association-container">
-            <div class="draggables">
-                <!-- Emojis arrastáveis -->
-                <div class="emoji" draggable="true" data-match="vc flechou meu coraçao">💘</div>
-                <div class="emoji" draggable="true" data-match="nosso futuro">👨‍👩‍👧‍👦</div>
-                <div class="emoji" draggable="true" data-match="coelho">🐇</div>
-                <div class="emoji" draggable="true" data-match="apaixonada">😍</div>
-                <div class="emoji" draggable="true" data-match="burro">🐴</div>
-            </div>
-            <div class="dropzones">
-                <!-- Áreas de destino -->
-                <div class="drop-area" data-name="vc flechou meu coraçao">Vc flechou meu coraçao</div>
-                <div class="drop-area" data-name="nosso futuro">Nosso futuro</div>
-                <div class="drop-area" data-name="coelho">A começo do seu primeiro apelido</div>
-                <div class="drop-area" data-name="apaixonada">Eu quando te vi pela primeira vez</div>
-                <div class="drop-area" data-name="burro">Segunda parte do seu primeiro apelido</div>
-            </div>
-        </div>
-    `;
-
-    const draggables = document.querySelectorAll('.emoji');
-    const dropzones = document.querySelectorAll('.drop-area');
-    let correctMatches = 0;
-
-    // Configura cada emoji para arrastar
-    draggables.forEach(el => {
-        el.addEventListener('dragstart', (e) => {
-            e.dataTransfer.setData('text/plain', e.target.dataset.match);
-            e.dataTransfer.effectAllowed = 'move';
-        });
-    });
-
-    // Configura cada destino para receber o emoji
-    dropzones.forEach(zone => {
-        zone.addEventListener('dragover', (e) => {
-            e.preventDefault(); // necessário para permitir drop
-        });
-
-        zone.addEventListener('drop', (e) => {
-            e.preventDefault();
-            const draggedType = e.dataTransfer.getData('text/plain');
-            const targetType = zone.dataset.name;
-
-            // Verifica se é o local correto
-            if (draggedType === targetType && !zone.classList.contains('matched')) {
-                zone.innerHTML = '✔️ Correto!';
-                zone.classList.add('matched');
-                correctMatches++;
-
-                // Quando todos estiverem corretos
-                if (correctMatches === draggables.length) {
-                    words.push('I');
-                    updateWordList();
-                    nextLevelButton.classList.remove('hidden');
-                }
-            } else {
-                alert('Tente de novo! Esse não combina.');
-            }
-        });
-    });
 }
 
 // caça palavra
@@ -764,7 +694,7 @@ function termoGame() {
 
     if (palavra === palavraSecreta) {
       mensagem.innerHTML = "✨ Você acertou! A palavra era <strong>" + palavraSecreta + "</strong>";
-      words.push("!");
+      words.push("i");
       updateWordList();
       nextLevelButton.classList.remove("hidden");
       btn.disabled = true;
@@ -943,9 +873,6 @@ volumeControl.addEventListener('input', () => {
 startButton.addEventListener('click', () => {
   bgMusic.play();
 });
-
-
-
 
 
 
