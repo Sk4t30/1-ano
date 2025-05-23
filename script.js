@@ -661,7 +661,7 @@ function fillInTheBlankGame() {
 }
 
 function termoGame() {
-  const palavraSecreta = "adoro"; // deve ter 5 letras
+  const palavraSecreta = "ADORO"; // deve ter 5 letras
   const maxTentativas = 6;
   let tentativas = [];
 
