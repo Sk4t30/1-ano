@@ -28,7 +28,7 @@ function nextLevel() {
 
     switch (currentLevel) {
         case 0:
-            fishingGame(); break;
+            sequenceGame(); break;
         case 1:
             memoryGame(); break;
         case 2:
@@ -44,7 +44,7 @@ function nextLevel() {
         case 7:
             puzzleGame(); break;
         case 8:
-            sequenceGame(); break;
+            fishingGame(); break;
         case 9:
             fillInTheBlankGame(); break;
         default:
@@ -68,15 +68,15 @@ function updateWordList() {
 
 function quizGame() {
     minigameArea.innerHTML = `
-        <h2>Quiz: Quando foi o dia que eu te pedi em namoro</h2>
-        <button class="quiz-option">Poder</button>
-        <button class="quiz-option">Respeito</button>
-        <button class="quiz-option">Dinheiro</button>
+        <h2>Quiz: Quando foi o dia que eu te pedi em namoro?</h2>
+        <button class="quiz-option">11/06/2024</button>
+        <button class="quiz-option">01/06/2024</button>
+        <button class="quiz-option">19/09/2024</button>
     `;
 
     document.querySelectorAll('.quiz-option').forEach(button => {
         button.addEventListener('click', () => {
-            if (button.textContent === 'Respeito') {
+            if (button.textContent === '01/06/2024') {
                 words.push('Z');
                 updateWordList();
                 nextLevelButton.classList.remove('hidden');
@@ -143,7 +143,7 @@ function fishingGame() {
     minigameArea.innerHTML = '<h2>Pesque o peixe certo!</h2><div id="fishArea"></div>';
 
     const fishArea = document.getElementById('fishArea');
-    const totalFish = 7;
+    const totalFish = 5;
     const correctFishIndex = Math.floor(Math.random() * totalFish);
 
     for (let i = 0; i < totalFish; i++) {
@@ -186,24 +186,20 @@ function animateFish(fish) {
     const areaWidth = area.clientWidth;
     const areaHeight = area.clientHeight;
 
-    // posição inicial
-    let x = parseFloat(fish.style.left) || Math.random() * 90;
-    let y = parseFloat(fish.style.top) || Math.random() * 250;
+    let x = Math.random() * (areaWidth - 60);
+    let y = Math.random() * (areaHeight - 60);
 
-    // direção aleatória
-    let dx = (Math.random() * 1.5 + 0.5) * (Math.random() < 0.5 ? 1 : -1);
-    let dy = (Math.random() * 1.5 + 0.5) * (Math.random() < 0.5 ? 1 : -1);
+    let dx = (Math.random() * 2 + 1) * (Math.random() < 0.5 ? 1 : -1);
+    let dy = (Math.random() * 2 + 1) * (Math.random() < 0.5 ? 1 : -1);
 
     function move() {
-        // atualizar posição
         x += dx;
         y += dy;
 
-        // bordas horizontais
-        if (x < 0 || x > 90) dx *= -1;
-        if (y < 0 || y > (areaHeight - 60)) dy *= -1;
+        if (x <= 0 || x >= (areaWidth - 60)) dx *= -1;
+        if (y <= 0 || y >= (areaHeight - 60)) dy *= -1;
 
-        fish.style.left = `${x}%`;
+        fish.style.left = `${x}px`;
         fish.style.top = `${y}px`;
 
         requestAnimationFrame(move);
@@ -527,8 +523,6 @@ function sequenceGame() {
 
   colors.forEach((color, i) => {
     const btn = document.createElement('button');
-    btn.style.width = '100px';
-    btn.style.height = '100px';
     btn.style.backgroundColor = color;
     btn.style.border = '4px solid transparent';
     btn.style.borderRadius = '15px';

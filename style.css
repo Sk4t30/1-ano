@@ -670,6 +670,36 @@ html, body {
   user-select: none;
 }
 
+#colorButtons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+}
+
+#colorButtons button {
+  width: clamp(60px, 22vw, 80px);
+  height: clamp(60px, 22vw, 80px);
+  border-radius: 15px;
+  border: none;
+  cursor: pointer;
+  transition: box-shadow 0.3s, transform 0.2s;
+}
+
+#colorButtons button:active {
+  transform: scale(0.95);
+}
+
+@media (max-width: 600px) {
+  #colorButtons {
+    gap: 10px;
+  }
+}
+
+
+
+
 
 
 
