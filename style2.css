@@ -6,6 +6,8 @@
 }
 
 body {
+  background: url('ux93fxldhoxa1.gif') no-repeat center center fixed;
+  background-size: cover;
   background: linear-gradient(to right, #fff0f4, #ffe6f0);
   font-family: 'Poppins', sans-serif;
   color: #b71c50;

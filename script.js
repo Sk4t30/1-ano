@@ -211,14 +211,14 @@ function animateFish(fish) {
 // caça palavra
 
 function wordSearchGame() {
-    const targetWords = ['AMOR', 'ZUL', '1ANO'];
+    const targetWords = ['AMOR', 'LUZ', '1ANO'];
     let foundWords = [];
 
     const grid = [
         ['A', 'U', 'P', 'D', 'X', 'Y'],
         ['H', 'I', 'A', 'K', 'Q', 'P'],
         ['B', 'A', 'M', 'O', 'R', 'G'],
-        ['Z', 'U', 'L', 'K', 'L', 'M'],
+        ['L', 'U', 'Z', 'K', 'L', 'M'],
         ['N', 'O', 'P', 'Q', 'R', 'S'],
         ['T', 'U', '1', 'A', 'N', 'O'],
     ];
