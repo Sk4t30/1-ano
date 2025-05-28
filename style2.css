@@ -1,0 +1,391 @@
+/* 🌸 Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: linear-gradient(to right, #fff0f4, #ffe6f0);
+  font-family: 'Poppins', sans-serif;
+  color: #b71c50;
+  overflow-x: hidden;
+}
+
+header {
+  background: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 10%;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+header .logo {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+header nav a {
+  color: #b71c50;
+  text-decoration: none;
+  margin-left: 30px;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+header nav a:hover {
+  color: #d81b60;
+}
+
+/* 🎯 Hero */
+.hero {
+  text-align: center;
+  padding: 100px 20px;
+  background: linear-gradient(145deg, #ffe6f0, #fff);
+}
+
+.hero h1 {
+  font-size: 3em;
+  margin-bottom: 10px;
+}
+
+.hero p {
+  font-size: 1.2em;
+  margin-bottom: 20px;
+}
+
+.btn {
+  background: #d81b60;
+  color: white;
+  padding: 12px 28px;
+  border-radius: 30px;
+  text-decoration: none;
+  transition: background 0.3s;
+}
+
+.btn:hover {
+  background: #b71c50;
+}
+
+/* 📸 Galeria */
+.galeria {
+  padding: 60px 10%;
+}
+
+.galeria h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 15px;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 15px;
+  transition: transform 0.4s;
+  cursor: pointer;
+}
+
+.gallery img:hover {
+  transform: scale(1.05);
+}
+
+/* 💼 Projetos */
+.projetos {
+  padding: 60px 10%;
+}
+
+.projetos h2 {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.projects {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.project-card {
+  background: white;
+  padding: 20px;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  flex: 1 1 250px;
+  transition: transform 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+}
+
+.project-card h3 {
+  margin-bottom: 10px;
+}
+
+.project-card p {
+  color: #555;
+  margin-bottom: 10px;
+}
+
+.project-card a {
+  color: #d81b60;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+/* 📱 Contato */
+.contato {
+  text-align: center;
+  padding: 60px 20px;
+}
+
+.contato h2 {
+  margin-bottom: 20px;
+}
+
+/* 🔚 Footer */
+footer {
+  text-align: center;
+  padding: 15px;
+  background: #fff0f6;
+  color: #b71c50;
+}
+
+/* 🎶 Música */
+.audio-controls {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #ffe6f0;
+  padding: 10px 12px;
+  border-radius: 25px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  z-index: 1000;
+}
+
+.audio-controls button {
+  background: none;
+  border: none;
+  font-size: 1.3em;
+  cursor: pointer;
+  color: #b71c50;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.gallery img {
+  width: 100%;
+  height: 220px; /* altura fixa */
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.4s;
+  cursor: pointer;
+}
+
+/* 🔥 Lightbox */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.9);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  flex-direction: column;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 10px;
+}
+
+.lightbox .close, 
+.lightbox .prev, 
+.lightbox .next {
+  position: fixed;
+  color: white;
+  font-size: 2em;
+  cursor: pointer;
+  user-select: none;
+  background: rgba(0,0,0,0.5);
+  padding: 8px 12px;
+  border-radius: 10px;
+  transition: background 0.3s;
+}
+
+.lightbox .close:hover,
+.lightbox .prev:hover,
+.lightbox .next:hover {
+  background: rgba(0,0,0,0.8);
+}
+
+.lightbox .close {
+  top: 20px;
+  right: 30px;
+}
+
+.lightbox .prev {
+  top: 50%;
+  left: 30px;
+  transform: translateY(-50%);
+}
+
+.lightbox .next {
+  top: 50%;
+  right: 30px;
+  transform: translateY(-50%);
+}
+
+/* 🔥 Lightbox refinado */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  backdrop-filter: blur(5px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  flex-direction: column;
+  padding: 20px;
+}
+
+.lightbox img {
+  max-width: 90%;
+  max-height: 80%;
+  border-radius: 15px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.5);
+  transition: transform 0.3s ease;
+}
+
+.lightbox .close, 
+.lightbox .prev, 
+.lightbox .next {
+  position: fixed;
+  color: white;
+  font-size: 1.8em;
+  cursor: pointer;
+  user-select: none;
+  background: rgba(0,0,0,0.4);
+  padding: 8px 14px;
+  border-radius: 50px;
+  transition: background 0.3s, transform 0.2s;
+}
+
+.lightbox .close:hover,
+.lightbox .prev:hover,
+.lightbox .next:hover {
+  background: rgba(0,0,0,0.7);
+  transform: scale(1.1);
+}
+
+.lightbox .close {
+  top: 25px;
+  right: 30px;
+}
+
+.lightbox .prev {
+  top: 50%;
+  left: 30px;
+  transform: translateY(-50%);
+}
+
+.lightbox .next {
+  top: 50%;
+  right: 30px;
+  transform: translateY(-50%);
+}
+
+.btn {
+  background: linear-gradient(90deg, #d81b60, #f06292);
+  color: white;
+  padding: 12px 28px;
+  border-radius: 40px;
+  text-decoration: none;
+  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 4px 10px rgba(216, 27, 96, 0.3);
+  font-weight: 500;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(216, 27, 96, 0.4);
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.gallery img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  border-radius: 15px;
+  transition: transform 0.4s, box-shadow 0.4s;
+  cursor: pointer;
+}
+
+.gallery img:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.project-card {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  flex: 1 1 280px;
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.2);
+}
+
+[data-animate] {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease;
+}
+
+[data-animate].show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* @media (max-width: 600px) {
+  .gallery img {
+    height: 180px;
+  }
+} */
+
+/* @media (max-width: 600px) {
+  .gallery img {
+    height: 150px;
+  }
+} */
+
+
+
+
+

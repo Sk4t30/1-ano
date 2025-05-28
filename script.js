@@ -565,7 +565,7 @@ function sequenceGame() {
     playerSequence = [];
     level++;
     if (level > maxLevel) {
-      words.push('O');
+      words.push('F');
       updateWordList();
       nextLevelButton.classList.remove('hidden');
       message.textContent = `Parabéns! Você completou todos os níveis! Clique em Próxima Fase.`;
