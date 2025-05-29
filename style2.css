@@ -6,16 +6,15 @@
 }
 
 body {
-  background: url('ux93fxldhoxa1.gif') no-repeat center center fixed;
+  background: url('bcbfa7faed1e55e4054f85b2e0551f62.gif') no-repeat center center fixed;
   background-size: cover;
-  background: linear-gradient(to right, #fff0f4, #ffe6f0);
   font-family: 'Poppins', sans-serif;
   color: #b71c50;
   overflow-x: hidden;
 }
 
 header {
-  background: #fff;
+  background: #ffffff00;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -47,7 +46,7 @@ header nav a:hover {
 .hero {
   text-align: center;
   padding: 100px 20px;
-  background: linear-gradient(145deg, #ffe6f0, #fff);
+  background: rgba(245, 245, 220, 0)
 }
 
 .hero h1 {
