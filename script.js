@@ -326,7 +326,7 @@ function wordSearchGame() {
 // forca
 
 function hangmanGame() {
-    const palavras = ['AMOR', 'EU TE AMO', 'CARINHO', 'RESPEITO', 'UM ANO'];
+    const palavras = ['AMOR', 'COMPANHEIRISMO', 'CARINHO', 'RESPEITO', 'RECIPROCIDADE'];
     const palavra = palavras[Math.floor(Math.random() * palavras.length)];
     let erros = 0;
     let maxErros = 10;
